@@ -8,4 +8,22 @@ database to be named A4dbNorm, containing two collections “songwriters” and 
 reside in the local Mongo data repository but that will not be submitted. You will need to submit only the
 A4T1.py file."""
 
+
+
+# The Following section is copy and pasted from "https://www.mongodb.com/compatibility/json-to-mongodb"
 import pymongo
+import json
+from pymongo import MongoClient, InsertOne
+
+client = pymongo.MongoClient(<CONNECTION STRING>)
+db = client.<DATABASE>
+collection = db.<COLLECTION>
+requesting = []
+
+with open(r"<FILENAME>") as f:
+    for jsonObj in f:
+        myDict = json.loads(jsonObj)
+        requesting.append(InsertOne(myDict))
+
+result = collection.bulk_write(requesting)
+client.close()
