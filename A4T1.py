@@ -15,6 +15,7 @@ A4T1.py file."""
 import json
 import sys
 from pymongo import MongoClient
+from bson import json_util
 
 client = MongoClient('localhost', int(sys.argv[1]))
 db = client["A4dbNorm"]
@@ -22,13 +23,13 @@ songwriters = db["songwriters"]
 recordings = db["recordings"]
 
 with open("songwriters.json", encoding='utf-8') as f:
-    songwritersDict = json.load(f)
+    songwritersDict = json_util.loads(f.read())
     f.close()
 
 songwriters.insert_many(songwritersDict)
 
 with open("recordings.json", encoding='utf-8') as f:
-    recordingsDict = json.load(f)
+    recordingsDict = json_util.loads(f.read())
     f.close()
 
 recordings.insert_many(recordingsDict)
