@@ -26,12 +26,12 @@ with open("songwriters.json", 'r') as f:
     songwritersDict = json.load(f)
     f.close()
 
-songwriters_result = songwriters.insert_many(songwritersDict)
+songwriters.insert_many(songwritersDict)
 
 with open("recordings.json", "r") as f:
     recordingsDict = json.load(f)
     f.close()
 
-recordings_result = recordings.insert_many(recordingsDict)
+recordings.insert_many(recordingsDict)
 
 client.close()
