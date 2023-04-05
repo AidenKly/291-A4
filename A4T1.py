@@ -20,7 +20,6 @@ client = MongoClient('localhost', int(sys.argv[1]))
 db = client["A4dbNorm"]
 songwriters = db["songwriters"]
 recordings = db["recordings"]
-requesting = []
 
 with open("songwriters.json", 'r') as f:
     songwritersDict = json.load(f)
