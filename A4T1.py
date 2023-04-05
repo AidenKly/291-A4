@@ -4,7 +4,7 @@ above. That is, effectively a set of normalized MongoDB documents. For querying 
 to keep in mind the intrinsic PK/FK-like dependencies between such tables. The input (the JSON
 datasets) must be assumed to be in the same folder as the Python application and should be hard
 coded in the application, i.e., not requiring any user input. The output of this task is a MongoDB
-database to be named A4dbNorm, containing two collections “songwriters” and “recordings”, which will
+database to be named A4dbNorm, containing two collections "songwriters" and "recordings", which will
 reside in the local Mongo data repository but that will not be submitted. You will need to submit only the
 A4T1.py file."""
 
@@ -12,19 +12,26 @@ A4T1.py file."""
 
 
 # The Following section is copy and pasted from "https://www.mongodb.com/compatibility/json-to-mongodb"
-import pymongo
 import json
-from pymongo import MongoClient, InsertOne
+import sys
+from pymongo import MongoClient
 
-client = pymongo.MongoClient(<CONNECTION STRING>)
-db = client.<DATABASE>
-collection = db.<COLLECTION>
+client = MongoClient('localhost', int(sys.argv[1]))
+db = client["A4dbNorm"]
+songwriters = db["songwriters"]
+recordings = db["recordings"]
 requesting = []
 
-with open(r"<FILENAME>") as f:
-    for jsonObj in f:
-        myDict = json.loads(jsonObj)
-        requesting.append(InsertOne(myDict))
+with open("songwriters.json", 'r') as f:
+    songwritersDict = json.load(f)
+    f.close()
 
-result = collection.bulk_write(requesting)
+songwriters_result = songwriters.insert_many(songwritersDict)
+
+with open("recordings.json", "r") as f:
+    recordingsDict = json.load(f)
+    f.close()
+
+recordings_result = recordings.insert_many(recordingsDict)
+
 client.close()
