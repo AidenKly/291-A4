@@ -21,13 +21,13 @@ db = client["A4dbNorm"]
 songwriters = db["songwriters"]
 recordings = db["recordings"]
 
-with open("songwriters.json", 'r') as f:
+with open("songwriters.json", encoding='utf-8') as f:
     songwritersDict = json.load(f)
     f.close()
 
 songwriters.insert_many(songwritersDict)
 
-with open("recordings.json", "r") as f:
+with open("recordings.json", encoding='utf-8') as f:
     recordingsDict = json.load(f)
     f.close()
 
