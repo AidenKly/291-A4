@@ -16,5 +16,7 @@ for songwriter in selected_songwriters:
         selected_recordings = recordings.find({"recording_id": recording},{"length":1})
         total_length += selected_recordings[0]['length']
     songwriter["total_length"] = total_length
+    del songwriter["_id"]
     del songwriter["recordings"]
+    songwriter["id"] = songwriter["songwriter_id"]
     pprint(songwriter)
