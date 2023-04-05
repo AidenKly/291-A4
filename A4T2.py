@@ -49,7 +49,6 @@ python3 A4Tx.py <port number>
 For example, to run the application on port 27017, you would use the following command:
 python3 A4Tx.py 27017"""
 
-import json
 import sys
 from pymongo import MongoClient
 
