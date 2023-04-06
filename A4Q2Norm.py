@@ -9,7 +9,8 @@ total_rhythmicality = 0
 total_count = 0
 
 
-result_set = recordings.aggregate([{"$match" : {"recording_id" :{"$regex" : "^70"}}}, {"$group" : {"_id" : "" , "avg_rhythmicality" : {"$avg" : "$rhythmicality"}}}])
+result_set = recordings.aggregate([{"$match" : {"recording_id" :{"$regex" : "^70"}}}, 
+                                   {"$group" : {"_id" : "" , "avg_rhythmicality" : {"$avg" : "$rhythmicality"}}}])
 
 for item in result_set:
     pprint(item)
