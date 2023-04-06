@@ -18,5 +18,5 @@ for songwriter in selected_songwriters:
     songwriter["total_length"] = total_length
     del songwriter["_id"]
     del songwriter["recordings"]
-    songwriter["id"] = songwriter["songwriter_id"]
+    songwriter["_id"] = songwriter["songwriter_id"]
     pprint(songwriter)
