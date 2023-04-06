@@ -9,13 +9,22 @@ client = MongoClient('localhost', int(sys.argv[1]))
 db = client["A4dbEmbed"]
 songwriters_recordings = db["SongwritersRecordings"]
 
-rhythmicality_intermediate = 0
+test = songwriters_recordings.aggregate([{"$unwind" : "$recordings"},
+                                          {"$match" : {"recordings.recording_id" : {"$regex" : "^70"}}}, 
+                                          {"$group" : {"_id" : "", "avg_rhythmicality" : {"$avg" : "$recordings.rhythmicality"}}}])
+for item in test:
+    pprint(item)
+
+
+
+#NOT NEEDED ANYMORE
+""" rhythmicality_intermediate = 0
 total_recordings = 0
 recording_log = []
-for songwriter_recording in songwriters_recordings.find():
+for songwriter_recording in songwriters_recordings.find({}):
     
     for recording in songwriter_recording["recordings"]:
-        if recording not in recording_log:
+        if (recording not in recording_log):
             total_recordings += 1
             rhythmicality_intermediate += recording["rhythmicality"]
             recording_log.append(recording)
@@ -25,4 +34,4 @@ temp.insert_one({"_id": '', 'avg_rhythmicality': rhythmicality_intermediate / to
 result = temp.find()
 
 pprint(result[0])
-temp.drop()
+temp.drop() """
