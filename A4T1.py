@@ -8,10 +8,8 @@ database to be named A4dbNorm, containing two collections "songwriters" and "rec
 reside in the local Mongo data repository but that will not be submitted. You will need to submit only the
 A4T1.py file."""
 
-# VERY USEFUL (?) : https://pymongo.readthedocs.io/en/stable/tutorial.html
 
 
-# The Following section is copy and pasted from "https://www.mongodb.com/compatibility/json-to-mongodb"
 import sys
 from pymongo import MongoClient
 from bson import json_util
