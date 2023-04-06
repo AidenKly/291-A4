@@ -1,3 +1,5 @@
+"""Write a query to get the average rhythmicality for all recordings that have a recording_id beginning
+with “70”."""
 from pymongo import MongoClient
 import sys
 from pprint import pprint

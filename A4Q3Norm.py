@@ -1,3 +1,4 @@
+"""Find the sum of the length of all recordings for each songwriter along with the songwriter's id."""
 import sys
 from pymongo import MongoClient
 from pprint import pprint 
