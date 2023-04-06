@@ -9,10 +9,10 @@ client = MongoClient('localhost', int(sys.argv[1]))
 db = client["A4dbEmbed"]
 songwriters_recordings = db["SongwritersRecordings"]
 
-test = songwriters_recordings.aggregate([{"$unwind" : "$recordings"},
+result_set = songwriters_recordings.aggregate([{"$unwind" : "$recordings"},
                                           {"$match" : {"recordings.recording_id" : {"$regex" : "^70"}}}, 
                                           {"$group" : {"_id" : "", "avg_rhythmicality" : {"$avg" : "$recordings.rhythmicality"}}}])
-for item in test:
+for item in result_set:
     pprint(item)
 
 
