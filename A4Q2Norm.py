@@ -7,7 +7,7 @@ db = client["A4dbNorm"]
 recordings = db["recordings"]
 total_rhythmicality = 0
 total_count = 0
-for recording in recordings.find({"recording_id": "70/"}, {"rhythmicality": 1}):
+for recording in recordings.find({"recording_id": {"$regex": "^70"}}, {"rhythmicality": 1}):
     total_rhythmicality += recording["rhythmicality"]
     total_count += 1
 
